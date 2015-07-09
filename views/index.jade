@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  div.mainContainer
+    ul
+        li(ng-repeat="item in items | orderBy:'status'")
+            div.title
+                {{item.name}}
+            div.image
+                a(href="{{item.klink}}")
+                    img(src="{{item.thumb}}" alt="{{item.name}}").thumb
+            div.bottomRowContainer
+                div(ng-show="item.status == 'Available'").bottomRowAvailable
+                    div.price
+                        {{item.price | currency}}
+                    div(class="btn left")
+                        a(href="{{item.klink}}")
+                            |View
+                div(ng-show="item.status == 'Sold'").bottomRowSold
+                        |Sold
+                div(ng-show="item.status == 'Holding'").bottomRowHolding
+                    div.price
+                        |On Hold
+                    div(class="btn left")
+                        a(href="{{item.klink}}")
+                            |View
