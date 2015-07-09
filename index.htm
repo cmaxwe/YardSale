@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="App">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
+  <meta charset="utf-8">
+  <title>Yardsale</title>
+  <link rel="stylesheet" type="text/css" href="yardsale.css">
+  <script src="js/angular.js"></script>
+  <script src="js/yardsale.js"></script>
+</head>
+<body ng-controller="ItemsCtrl">
+	<div class="mainContainer">
+	<ul>
+	  		<li ng-repeat="item in items | orderBy:'status'">
+	  			<div class="title">{{item.name}}</div>
+	  			<div class="image"><a href="{{item.klink}}"><img src="{{item.thumb}}" alt="{{item.name}}" class="thumb"/></a></div>
+	  			<div class="bottomRowContainer">
+		  			<div class="bottomRowAvailable" ng-show="item.status == 'Available'">
+		  				<div class="price">{{item.price | currency}}</div>
+		  				<div class="btn left"><a href="{{item.klink}}">View</a></div>
+		  			</div>
+		  			<div class="bottomRowSold" ng-show="item.status == 'Sold'">
+		  				Sold
+	  				</div>
+	  				<div class="bottomRowHolding" ng-show="item.status == 'Holding'">
+		  				<div class="price">On Hold</div>
+		  				<div class="btn left"><a href="{{item.klink}}">View</a></div>
+	  				</div>
+	  			</div>
+	  		</li>
+	  </ul>
+	</div>
+</body>
+</html>
